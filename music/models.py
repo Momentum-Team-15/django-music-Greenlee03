@@ -1,9 +1,12 @@
+from sre_constants import MAX_UNTIL
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
 class Post(models.Model):
-    artist = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    artist = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
